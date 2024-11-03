@@ -7,8 +7,10 @@ export const addCategories = async (req, res, next) => {
         return res.status(400).json({ message: 'Category is required' });
     }
 
+    const normalizedCategory = category.trim().toLowercase();
+
     try {
-        const existingCategory = await Category.findOne({ category });
+        const existingCategory = await Category.findOne({ category: normalizedCategory });
         if (!existingCategory) {
             await Category.create({ category });
             res.status(201).json({ message: 'Category added successfully' });
