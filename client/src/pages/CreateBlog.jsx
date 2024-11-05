@@ -47,7 +47,7 @@ function CreateBlog() {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get('/api/categories/');
+            const response = await axios.get('http://localhost:3000/api/category/');
             setCategory(response.data);
         } catch (error) {
             console.error('Error fetching categories:',error);
@@ -102,7 +102,7 @@ function CreateBlog() {
         }
 
         // Prepare the data to be sent
-        const blogData = {
+        const newsData = {
             title: formData.title,
             category: formData.category,
             content: content,  // Assign Quill editor content to formData
@@ -110,7 +110,7 @@ function CreateBlog() {
         };
 
         try {
-            const res = await axios.post('/api/blog/create', blogData);
+            const res = await axios.post('http://localhost:3000/api/news/create', newsData);
 
             if (res.status === 201) {
                 const blogId = res.data.blogId;

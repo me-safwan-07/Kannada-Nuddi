@@ -11,7 +11,7 @@ export const dashboardSidebarData = [
     },
     {
         title:"Category",
-        link: "#"
+        link: "/dashboard/category"
     },
     {
         title:"Earning",

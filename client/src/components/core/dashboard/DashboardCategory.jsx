@@ -10,7 +10,7 @@ export default function DashboardCategory() {
         const fetchCategories = async () => {
             setLoading(true);
             try {
-                const res = await fetch('/api/categories');
+                const res = await fetch('http://localhost:3000/api/category/');
                 const data = await res.json();
                 setCategories(data);
             } catch (err) {

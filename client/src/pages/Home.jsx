@@ -9,6 +9,7 @@ import FakeAd from '../components/common/FakeAd';
 import {HeroSection} from '../components/core/home/HeroSection';
 import { HorizontialNews } from '../components/core/home/HorizontialNews';
 import { getAllNews } from '../services/operations/newsApi';
+import DashboardCategory from '../components/core/dashboard/DashboardCategory';
 const Home = () => {
     const [blogs, setBlogs] = useState([]);
     const [error, setError] = useState('');
@@ -88,6 +89,7 @@ const Home = () => {
                     <FakeAd className={"flex w-full h-64 bg-black-100"} />
                 </aside>
             </div>
+            <DashboardCategory />
         </div>
 
     );

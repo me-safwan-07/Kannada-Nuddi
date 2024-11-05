@@ -17,7 +17,7 @@ function BlogPage() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await fetch(`/api/blog/get/${id}`);
+        const response = await fetch(`http://localhost:3000/api/news/${id}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -36,7 +36,7 @@ function BlogPage() {
     const fetchBlogs = async () => {
       if (!blog) return; // Wait until the blog is fetched
       try {
-        const res = await axios.get('/api/blog/get');
+        const res = await axios.get('/api/news');
         const filteredNews = res.data.filter(news => news.category === blog.category && news._id !== id);
         if (filteredNews.length >= 10) {
           setRecentNews(filteredNews.slice(0, 10));

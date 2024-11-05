@@ -10,7 +10,7 @@ const useFetchNews = (category) => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const res = await axios.get('/api/blog/get');
+                const res = await axios.get('http://localhost:3000/api/category/');
                 setNewsData(res.data);
             } catch (err) {
                 console.error('Error fetching content:', err);
