@@ -14,7 +14,7 @@ export const HeroSection = ({ mainNews, truncateContent, formatDate, titleSize }
                             <div className="p-3 flex flex-col">
                                 <h3 className="text-lg lg:text-xl font-semibold">{mainNews[0].title}</h3>
                                 {mainNews[0].title.length < 100 && (
-                                    <p className="text-gray-700 text-lg">{truncateContent(mainNews[0].content, 100)}</p>
+                                    <p className="text-gray-700 text-md">{truncateContent(mainNews[0].content, 100)}</p>
                                 )}
                                 <div className="flex justify-between items-center mt-2">
                                     <p className="text-gray-500 text-xs flex items-center gap-2">
@@ -27,20 +27,20 @@ export const HeroSection = ({ mainNews, truncateContent, formatDate, titleSize }
                     </div>
                     <hr className='' />
                     {/* Grid for subsequent blog posts */}
-                    <div className="flex flex-col md:grid md:grid-cols-2 gap-4 w-full md:w-2/3 md:ml-2 md:px-2">
+                    <div className="flex flex-col md:grid md:grid-cols-2 gap-2 w-full md:w-2/3 md:ml-2">
                         {mainNews.slice(1, 7).map((blog, index) => (
                             <div
                                 key={blog._id}
                                 className={`flex flex-row-reverse md:flex-col `}
                             >
-                            <Link to={`/blog/${blog._id}`} className="gap-2 mx-2">
+                            <Link to={`/blog/${blog._id}`} className=" border">
                                 {/* Desktop: Show image for index 0 and 1 */}
                                 {index < 2 && (
                                     <div className="md:w-full">
                                         <img
                                         src={blog.image}
                                         alt={blog.title}
-                                        className="hidden md:block h-1/2 w-full aspect-video transition-transform duration-300 ease-in-out transform hover:scale-105"
+                                        className="hidden md:block h-1/2 w-full aspect-video transition-transform duration-10 ease-in-out transform hover:scale-105"
                                         />
                                     </div>
                                 )}
@@ -55,15 +55,15 @@ export const HeroSection = ({ mainNews, truncateContent, formatDate, titleSize }
                                         }`}
                                     />
                                     <div className='flex-grow'>
-                                        <h3 className="text-xs md:text-sm font-semibold mb-2">
-                                            {truncateContent(blog.title, 55)}
+                                        <h3 className="text-xs md:text-sm font-semibold mb-1">
+                                            {truncateContent(blog.title, 45)}
                                         </h3>
-                                        <div className="flex justify-between items-center">
+                                        {/* <div className="flex justify-between items-center">
                                             <p className="text-gray-500 text-xs flex items-center gap-1">
                                                 <LuTimer className="h-3 w-3" />
                                                 {formatDate(blog.createdAt)}
                                             </p>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </Link>

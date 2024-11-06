@@ -81,7 +81,7 @@ const Home = () => {
                 {/* Hero Section */}
                 <HeroSection mainNews={mainNews} truncateContent={truncateContent} formatDate={formatDate} />
                 <hr />
-                <HorizontialNews mainNews={mainNews} truncateContent={truncateContent} formatDate={formatDate}/>
+                {/* <HorizontialNews mainNews={mainNews} truncateContent={truncateContent} formatDate={formatDate}/> */}
             </div>
             
             <div className="w-full md:w-1/4 borde">
@@ -89,7 +89,7 @@ const Home = () => {
                     <FakeAd className={"flex w-full h-64 bg-black-100"} />
                 </aside>
             </div>
-            <DashboardCategory />
+            {/* <DashboardCategory /> */}
         </div>
 
     );

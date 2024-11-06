@@ -40,19 +40,19 @@ const Header = () => {
                 <nav className="hidden lg:flex items-center overflow-x-auto whitespace-nowrap">
                     {navOptions.length > 0 ? (
                         <>
-                            <Link to="/" className="hover:text-gray-500 text-sm font-bold px-2">
+                            <Link to="/" className="hover:underline hover:text-white text-gray-300 text-sm font-bold px-2">
                                 Home
                             </Link>
                             {navOptions.slice(0, 9).map((cat) => (
                                 <Link
                                     key={cat.id}
                                     to={`/category/${cat.category.toLowerCase()}`}
-                                    className="hover:text-gray-400 text-sm font-bold px-2"
+                                    className="hover:underline hover:text-white text-gray-300 text-sm font-medium px-2"
                                 >
                                     {cat.category.charAt(0).toUpperCase() + cat.category.slice(1)}
                                 </Link>
                             ))}
-                            {navOptions.length > 9 && (
+                            {/* {navOptions.length > 9 && (
                                 <div className="relative inline-block">
                                     <button
                                         className="flex items-center text-sm font-bold px-2 hover:text-gray-500"
@@ -76,7 +76,7 @@ const Header = () => {
                                         </div>
                                     )}
                                 </div>
-                            )}
+                            )} */}
                         </>
                     ) : (
                         <p>No categories available</p>

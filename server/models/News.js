@@ -10,7 +10,7 @@ const NewsSchema = new mongoose.Schema(
     content: {
       type: String,
       required: true,
-      maxlength: 5000, // Optional: set a limit for content length
+      // maxlength: 5000, // Optional: set a limit for content length
     },
     category: {
       type: String,
