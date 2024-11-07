@@ -75,16 +75,16 @@ const Home = () => {
 
     return (
         <div className="flex flex-wrap">
-            <div className="w-full md:w-3/4 md:mx-auto md:p-4">
+            <div className="w-full md:w-4/5 md:mx-auto md:p-4">
                 {error && <div className="text-red-500 mb-4">{error}</div>}
 
                 {/* Hero Section */}
                 <HeroSection mainNews={mainNews} truncateContent={truncateContent} formatDate={formatDate} />
                 <hr />
-                {/* <HorizontialNews mainNews={mainNews} truncateContent={truncateContent} formatDate={formatDate}/> */}
+                <HorizontialNews mainNews={mainNews} truncateContent={truncateContent} formatDate={formatDate}/>
             </div>
             
-            <div className="w-full md:w-1/4 borde">
+            <div className="w-full md:w-1/5 borde">
                 <aside className='w-full h-full'>
                     <FakeAd className={"flex w-full h-64 bg-black-100"} />
                 </aside>

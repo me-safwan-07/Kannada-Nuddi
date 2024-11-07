@@ -38,7 +38,7 @@ const Header = () => {
                     <Link to="/">WEBSITE NAME</Link>
                 </div>
                 <nav className="hidden lg:flex items-center overflow-x-auto whitespace-nowrap">
-                    {navOptions.length > 0 ? (
+                    {navOptions.length > 0 && (
                         <>
                             <Link to="/" className="hover:underline hover:text-white text-gray-300 text-sm font-bold px-2">
                                 Home
@@ -78,8 +78,6 @@ const Header = () => {
                                 </div>
                             )} */}
                         </>
-                    ) : (
-                        <p>No categories available</p>
                     )}
                 </nav>
                 <div>
@@ -97,7 +95,7 @@ const Header = () => {
             </div>
 
             {/* Mobile Navbar */}
-            <div className="lg:hidden bg-gray-500 text-white h-5 flex items-center justify-center">
+            <div className="lg:hidden bg-gray-500 text-white h-8 flex items-center justify-center">
                 <nav className="flex items-center overflow-x-auto whitespace-nowrap">
                     {navOptions.map((cat) => (
                         <Link

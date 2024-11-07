@@ -33,20 +33,21 @@ export const HeroSection = ({ mainNews, truncateContent, formatDate, titleSize }
                                 key={blog._id}
                                 className={`flex flex-row-reverse md:flex-col `}
                             >
-                            <Link to={`/blog/${blog._id}`} className=" border">
+                            <Link to={`/blog/${blog._id}`} className="">
                                 {/* Desktop: Show image for index 0 and 1 */}
                                 {index < 2 && (
                                     <div className="md:w-full">
                                         <img
-                                        src={blog.image}
-                                        alt={blog.title}
-                                        className="hidden md:block h-1/2 w-full aspect-video transition-transform duration-10 ease-in-out transform hover:scale-105"
+                                            src={blog.image}
+                                            alt={blog.title}
+                                            className="hidden md:block h-1/2 w-full rounded-sm aspect-video transition-transform duration-300 ease-in-out transform "
                                         />
+
                                     </div>
                                 )}
 
                                 {/* Mobile: Show image for all indexes on the right */}
-                                <div className="flex flex-row-reverse flex-grow md:flex-col pl-2 w-full">
+                                <div className="flex flex-row-reverse flex-grow md:flex-col pl-2 w-full gap-2">
                                     <img
                                         src={blog.image}
                                         alt={blog.title}
@@ -56,7 +57,7 @@ export const HeroSection = ({ mainNews, truncateContent, formatDate, titleSize }
                                     />
                                     <div className='flex-grow'>
                                         <h3 className="text-xs md:text-sm font-semibold mb-1">
-                                            {truncateContent(blog.title, 45)}
+                                            {truncateContent(blog.title, 90)}
                                         </h3>
                                         {/* <div className="flex justify-between items-center">
                                             <p className="text-gray-500 text-xs flex items-center gap-1">
