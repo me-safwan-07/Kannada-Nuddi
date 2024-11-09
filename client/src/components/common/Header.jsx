@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 import Avatar from 'react-avatar';
 import { FaChevronDown } from 'react-icons/fa';
+import { getAllNews } from '../../services/operations/newsApi';
 
 const Header = () => {
     const { isLoggedIn } = useContext(AuthContext);
@@ -16,7 +17,8 @@ const Header = () => {
         const fetchData = async () => {
             try {
                 const categoryResponse = await axios.get("http://localhost:3000/api/category");
-                const newsResponse = await axios.get("http://localhost:3000/api/news");
+                // const newsResponse = await axios.get("http://localhost:3000/api/news");
+                const newsResponse = await getAllNews();
                 setNavOptions(categoryResponse.data);
                 setAllNews(newsResponse.data);
             } catch (err) {
@@ -33,8 +35,8 @@ const Header = () => {
 
     return (
         <div>
-            <div className="flex items-center justify-between p-2 bg-black text-white">
-                <div className="text-lg md:text-xl font-bold">
+            <div className="flex items-center justify-between px-2 bg-black text-white h-14">
+                <div className="text-xl md:text-xl font-bold">
                     <Link to="/">WEBSITE NAME</Link>
                 </div>
                 <nav className="hidden lg:flex items-center overflow-x-auto whitespace-nowrap">
@@ -95,19 +97,21 @@ const Header = () => {
             </div>
 
             {/* Mobile Navbar */}
-            <div className="lg:hidden bg-gray-500 text-white h-8 flex items-center justify-center">
-                <nav className="flex items-center overflow-x-auto whitespace-nowrap">
-                    {navOptions.map((cat) => (
-                        <Link
-                            key={cat.id}
-                            to={`/category/${cat.category.toLowerCase()}`}
-                            className="text-xs font-normal px-2"
-                        >
-                            {cat.category.charAt(0).toUpperCase() + cat.category.slice(1)}
-                        </Link>
-                    ))}
-                </nav>
-            </div>
+            {navOptions && (
+                <div className="lg:hidden bg-black-100 text-white h-12 sm:h-10 flex items-center justify-center shadow-md">
+                    <nav className="flex items-center overflow-x-auto whitespace-nowrap">
+                        {navOptions.map((cat) => (
+                            <Link
+                                key={cat.id}
+                                to={`/category/${cat.category.toLowerCase()}`}
+                                className="text-xs font-normal px-2"
+                            >
+                                {cat.category.charAt(0).toUpperCase() + cat.category.slice(1)}
+                            </Link>
+                        ))}
+                    </nav>
+                </div>
+            )}
         </div>
     );
 };

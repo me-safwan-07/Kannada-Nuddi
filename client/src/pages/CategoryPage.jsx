@@ -6,33 +6,33 @@ import { LuTimer } from "react-icons/lu";
 const useFetchNews = (category) => {
     const [newsData, setNewsData] = useState([]);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true); // New loading state
 
     useEffect(() => {
         const fetchBlogs = async () => {
+            setLoading(true); // Start loading before fetching data
             try {
-                const res = await axios.get('http://localhost:3000/api/category/');
+                // Assuming you have an API endpoint that filters news by category
+                const res = await axios.get(`http://localhost:3000/api/news/category/${category}`);
                 setNewsData(res.data);
             } catch (err) {
                 console.error('Error fetching content:', err);
                 setError('Failed to fetch blogs. Please try again later.');
+            } finally {
+                setLoading(false); // Stop loading once data is fetched
             }
         };
 
         fetchBlogs();
-    }, []);
+    }, [category]); // Re-fetch news when category changes
 
-    const filteredNews = newsData.filter(news => 
-        news.category.toLowerCase() === category.toLowerCase()
-    );
-
-    // console.log(filteredNews,category);
-    return { filteredNews, error };
+    return { newsData, error, loading };
 };
 
 // In your component
 function CategoryPage() {
-    const { category } = useParams();
-    const { filteredNews, error } = useFetchNews(category);
+    const { category } = useParams(); // Getting the category from URL params
+    const { newsData, error, loading } = useFetchNews(category);
 
     const truncateContent = (content, limit = 100) => {
         const text = content.replace(/<[^>]*>/g, ''); // Remove HTML tags
@@ -45,13 +45,21 @@ function CategoryPage() {
         return date.toLocaleDateString('en-GB', options);
     };
 
+    if (loading) {
+        return (
+            <div className="text-center">
+                <p>Loading...</p>
+            </div>
+        );
+    }
+
     return (
         <div>
             <h1>{category.charAt(0).toUpperCase() + category.slice(1)} News</h1>
             {error ? (
                 <p className="text-red-500">{error}</p>
-            ) : filteredNews.length > 0 ? (
-                filteredNews.map((news) => (
+            ) : newsData.length > 0 ? (
+                newsData.map((news) => (
                     <div className="flex flex-col md:flex-row items-start mb-4 border rounded-lg overflow-hidden shadow-md" key={news._id}>
                         <Link to={`/blog/${news._id}`} className="w-full relative">
                             <div className="relative">

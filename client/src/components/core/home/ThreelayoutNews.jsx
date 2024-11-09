@@ -4,15 +4,15 @@ import { LuTimer } from "react-icons/lu";
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-circular-progressbar/dist/styles.css';
 
-export const HorizontialNews = ({ news, truncateContent, formatDate, titleSize}) => {
+export const ThreelayoutNews = ({ news, truncateContent, formatDate, titleSize}) => {
   return (
-    <div className="flex flex-col md:flex-row justify-between gap-4 w-full md:w-full md:ml-2 md:px-2">
-        {news.map((blog) => (
+    <div className="flex flex-col flex-shrink md:flex-row justify-between gap-4 w-full md:w-full md:ml-2 md:px-2">
+        {news.slice(1, 4).map((blog) => (
             <div
                 key={blog._id}
                 className="flex flex-row-reverse md:flex-col relative md:w-1/4 mt-2 pt-2"
             >
-                <Link to={`/blog/${blog._id}`} className="gap-2 mx-d2 flex flex-">
+                <Link to={`/blog/${blog._id}`} className="gap-2 mx-2 flex flex-">
                     {/* Mobile: Show image for all indexes on the right */}
                     <div className="flex flex-row-reverse md:flex-col justify-between pl-2 w-full">
                         <img
@@ -40,3 +40,4 @@ export const HorizontialNews = ({ news, truncateContent, formatDate, titleSize})
 }
 
 // export default HorizontialNews
+

@@ -1,13 +1,16 @@
-import './App.css'
-import Routers from './Routes'
+import './App.css';
+import Header from './components/common/Header';
+import Routers from './Routes';
 
 function App() {
-
   return (
-    <>
-      <Routers />
-    </>
-  )
+    <div className="App">
+      {/* Main content with routes */}
+      <main>
+        <Routers />
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -18,10 +18,10 @@ export const getAllNews = async () => {
 
     try {
         const response = await apiConnector("GET", GET_ALL_NEWS);
-        if (!response?.data?.success) {
+        if (!response.data) {
             throw new Error("Could not Fetch news");
         }
-        result = response?.data?.data
+        result = response.data
     } catch (error) {
         console.log("GET_ALL_NEWS API error...........: " + error)
         toast.error(error.message);
@@ -56,7 +56,7 @@ export const getNewsById = async (id) => {
     let result = null;
 
     try {
-        const response = await apiConnector("GET", GET_NEWS_BY_ID.replace(":id", id));
+        const response = await apiConnector("GET", `${GET_NEWS_BY_ID}/${id}`);
         if (!response?.data?.success) {
             throw new Error("Could not fetch news details");
         }

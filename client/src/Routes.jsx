@@ -34,7 +34,7 @@ const RouteHandler = ({ isLoggedIn }) => {
 
   return (
     <>
-      {!isDashboardPath && <Header />} {/* Render Header only if not on a dashboard path */}
+      {!isDashboardPath && <Header />}
       <DashboardProvider>
         <Routes>
           <Route path="/" element={<Home />} />

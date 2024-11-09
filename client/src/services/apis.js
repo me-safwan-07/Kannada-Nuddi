@@ -19,7 +19,7 @@ export const profileEndpoints = {
 export const newsEndpoints = {
   GET_ALL_NEWS: `${BASE_URL}/news`,
   CREATE_NEWS: `${BASE_URL}/news/getNewsByCategory`,
-  GET_NEWS_BY_ID: `${BASE_URL}/news/`,
+  GET_NEWS_BY_ID: `${BASE_URL}/news`,
   UPDATE_NEWS: `${BASE_URL}/news/update/`,
   DELETE_NEWS: `${BASE_URL}/news/delete/`,
 };

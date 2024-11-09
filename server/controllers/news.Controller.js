@@ -1,6 +1,7 @@
-import Blog from "../models/News.js";
+import News from "../models/News.js";
 // import NewsView from "../models/NewsView.js";
 import { errorHandler } from "../utils/errorHandler.js";
+import { mongoose } from "mongoose";
 
 // Utility function to generate a unique slug
 const generateSlug = async (title) => {
@@ -9,7 +10,7 @@ const generateSlug = async (title) => {
   let count = 1;
 
   // Check for existing slugs and append a number if necessary
-  while (await Blog.findOne({ slug })) {
+  while (await News.findOne({ slug })) {
     slug = `${baseSlug}-${count}`;
     count++;
   }
@@ -28,7 +29,7 @@ export const createNews = async (req, res, next) => {
   try {
     const slug = await generateSlug(title);
 
-    const newNews = new Blog({
+    const newNews = new News({
       title,
       content,
       image,
@@ -47,25 +48,35 @@ export const createNews = async (req, res, next) => {
 // Get All Blogs
 export const getNews = async (req, res, next) => {
   try {
-    const blogs = await Blog.find({}).sort({ updatedAt: -1 });
+    const blogs = await News.find({}).sort({ updatedAt: -1 });
     res.status(200).json(blogs);
   } catch (err) {
     next(err);
   }
 };
 
-// Get Blog by ID and Track Views
 export const getNewsById = async (req, res, next) => {
   const { id } = req.params;
+
+  // Validate ObjectId
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return next(errorHandler(400, "Invalid blog ID format"));
+  }
+
   try {
     // Find the blog by ID
-    const blog = await Blog.findById(id);
+    const blog = await News.findById(id);
+    
+    // Check if the blog exists
     if (!blog) {
       return next(errorHandler(404, "Sorry, we couldn’t find the blog you were looking for."));
     }
+
     // Increment views
     blog.views = (blog.views || 0) + 1;
     await blog.save();
+
+    // Send the response
     res.status(200).json({
       message: "Here is the blog you requested",
       blog
@@ -76,10 +87,11 @@ export const getNewsById = async (req, res, next) => {
   }
 };
 
+
 // Delete a Blog
 export const deleteNews = async (req, res, next) => {
   try {
-    const blog = await Blog.findByIdAndDelete(req.params.id);
+    const blog = await News.findByIdAndDelete(req.params.id);
     if (!blog) {
       return res.status(404).json({ message: 'Blog not found.' });
     }
@@ -104,7 +116,7 @@ export const updateNews = async (req, res, next) => {
 
   try {
     // Find and update the blog
-    const updatedBlog = await Blog.findByIdAndUpdate(
+    const updatedBlog = await News.findByIdAndUpdate(
       id, 
       { 
         $set: {

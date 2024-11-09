@@ -1,34 +1,36 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LuTimer } from "react-icons/lu";
+import FakeAd from '../../common/FakeAd';
 
-export const HeroSection = ({ mainNews, truncateContent, formatDate, titleSize }) => {
+export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) => {
     return (
         <div className="">
-            {mainNews.length > 0 ? (
+            {news.length > 0 ? (
                 <div className='md:flex'>
                     {/* Main blog post with larger layout */}
                     <div className="flex flex-row md:flex-row items-start mb-4 overflow-hidden w-full md:w-3/5 md:h-3/5">
-                        <Link to={`/blog/${mainNews[0]._id}`} className="w-full relative">
-                            <img className="relative aspect-video transition-transform duration-300 ease-in-out transform hover:scale-105" src={mainNews[0].image} alt={mainNews[0].title} />
+                        <Link to={`/blog/${news[0]._id}`} className="w-full relative">
+                            <img className="relative aspect-video transition-transform duration-300 ease-in-out transform hover:scale-105" src={news[0].image} alt={news[0].title} />
                             <div className="p-3 flex flex-col">
-                                <h3 className="text-lg lg:text-xl font-semibold">{mainNews[0].title}</h3>
-                                {mainNews[0].title.length < 100 && (
-                                    <p className="text-gray-700 text-md">{truncateContent(mainNews[0].content, 100)}</p>
+                                <h3 className="text-lg lg:text-xl font-semibold">{news[0].title}</h3>
+                                {news[0].title.length < 100 && (
+                                    <p className="text-white-700 text-md">{truncateContent(news[0].content, 100)}</p>
                                 )}
                                 <div className="flex justify-between items-center mt-2">
                                     <p className="text-gray-500 text-xs flex items-center gap-2">
                                         <LuTimer className='h-3 w-3' />
-                                        {formatDate(mainNews[0].createdAt)}
+                                        {formatDate(news[0].createdAt)}
                                     </p>
                                 </div>
                             </div>
                         </Link>
                     </div>
-                    <hr className='' />
+                    <hr className='border border-gray-400' />
+                    <FakeAd  className="md:hidden block h-32 my-6"/>
                     {/* Grid for subsequent blog posts */}
                     <div className="flex flex-col md:grid md:grid-cols-2 gap-2 w-full md:w-2/3 md:ml-2">
-                        {mainNews.slice(1, 7).map((blog, index) => (
+                        {news.slice(1, 7).map((blog, index) => (
                             <div
                                 key={blog._id}
                                 className={`flex flex-row-reverse md:flex-col `}
