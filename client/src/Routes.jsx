@@ -7,7 +7,7 @@ import Dashboard from './pages/Dashboard';
 import { AuthContext } from './context/AuthContext';
 import { Login } from './pages/Login';
 import "./App.css";
-import DashboardProvider from './context/DashboardContext';
+// import DashboardProvider from './context/DashboardContext';
 import AdminLogin from './pages/AdminLogin';
 import DashboardCategory from './components/core/dashboard/DashboardCategory';
 import CategoryPage from './pages/CategoryPage';
@@ -35,7 +35,7 @@ const RouteHandler = ({ isLoggedIn }) => {
   return (
     <>
       {!isDashboardPath && <Header />}
-      <DashboardProvider>
+      {/* <DashboardProvider> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<CreateBlog />} />
@@ -52,7 +52,7 @@ const RouteHandler = ({ isLoggedIn }) => {
           
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
-      </DashboardProvider>
+      {/* </DashboardProvider> */}
     </>
   );
 };

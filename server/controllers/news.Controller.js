@@ -20,7 +20,7 @@ const generateSlug = async (title) => {
 
 // Create Blog Post
 export const createNews = async (req, res, next) => {
-  const { title, content, image, category } = req.body;
+  const { title, subtitle, content, image, category } = req.body;
 
   if (!title || !content) {
     return res.status(400).json({ message: 'Title and content are required.' });
@@ -31,6 +31,7 @@ export const createNews = async (req, res, next) => {
 
     const newNews = new News({
       title,
+      subtitle,
       content,
       image,
       category,
@@ -73,7 +74,7 @@ export const getNewsById = async (req, res, next) => {
     }
 
     // Increment views
-    blog.views = (blog.views || 0) + 1;
+    // blog.views = (blog.views || 0) + 1;
     await blog.save();
 
     // Send the response

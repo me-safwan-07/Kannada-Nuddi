@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Bell, ChevronDown, Layout, List } from 'lucide-react';
-import { DashboardContext } from '../context/DashboardContext';
+// import { DashboardContext } from '../context/DashboardContext';
 import { LuTimer } from "react-icons/lu";
 import DashboardSIdebar from '../components/core/dashboard/DashboardSIdebar';
 
 function Dashboard() {
-    const { stats } = useContext(DashboardContext);
+    // const { stats } = useContext(DashboardContext);
     const [blogs, setBlogs] = useState([]);
     const [error, setError] = useState('');
     const [isBoxView, setIsBoxView] = useState(true);  // State to toggle between views

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Spinner } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,7 +19,7 @@ function BlogPage() {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/api/news/${id}`);
-        setBlog(response.data);
+        setBlog(response.data.blog);
         setLoading(false);
       } catch (err) {
         toast.error('Failed to fetch blog');
@@ -32,15 +32,12 @@ function BlogPage() {
 
   // Fetch related or recent news posts
   useEffect(() => {
-    if (!blog) return; // Wait until the blog is fetched
+    if (!blog) return;
 
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get('https://localhost:3000/api/news');
-        const filteredNews = res.data.filter(news => news.category === blog.category && news._id !== id);
-
-        // Limit to 10 items or fewer if there aren't enough
-        setRecentNews(filteredNews.length >= 10 ? filteredNews.slice(0, 10) : filteredNews);
+        const res = await axios.get(`http://localhost:3000/api/news?category=${blog.category}&exclude=${id}`);
+        setRecentNews(res.data.slice(0, 10));
       } catch (err) {
         console.error("Error fetching related content:", err);
         setError('Failed to fetch news. Please try again later.');
@@ -49,7 +46,6 @@ function BlogPage() {
     fetchBlogs();
   }, [blog, id]);
 
-  // Display loading spinner
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen bg-gray-50">
@@ -60,7 +56,6 @@ function BlogPage() {
     );
   }
 
-  // Display error page
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6">
@@ -74,7 +69,6 @@ function BlogPage() {
     );
   }
 
-  // Display if no blog found
   if (!blog) {
     return (
       <div className='p-3 max-w-3xl mx-auto'>
@@ -83,32 +77,35 @@ function BlogPage() {
     );
   }
 
-  // Main blog page content
   return (
-    <div className='container mx-auto px-4 py-8 flex flex-col md:flex-row'>
-      <div className="md:w-2/3 lg:w-3/4 p-4">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h1 className="text-4xl font-bold mb-4">{blog.title}</h1>
+    <div className='container mx-auto flex flex-col md:flex-row'>
+      <div className="md:w-2/3 lg:w-3/4 ">
+        <div className="">
+          <h1 className="p-3 md:text-4xl text-xl font-bold mb-">{blog.title}</h1>
           <img 
             src={blog.image} 
             alt={blog.title}  
-            className="w-full h-auto rounded-lg shadow-md mb-4" 
+            className="w-full h-auto mb-4" 
           />
-          <div dangerouslySetInnerHTML={{ __html: blog.content }} className="text-gray-700"></div>
+          <div dangerouslySetInnerHTML={{ __html: blog.content }} className="text-sm"></div>
+          {/* <p className="text-sm m-4">Views: {blog.views.toLocaleString()}</p> */}
         </div>
       </div>
-      <aside className="md:w-1/3 lg:w-1/4 p-4 bg-gray-100 rounded-lg shadow">
-        <h2 className="text-2xl font-semibold mb-4">Recent News</h2>
+      <aside className="md:w-1/3 lg:w-1/4 m-4">
+        {/* <h2 className="text-2xl font-semibold mb-4">Recent News</h2> */}
         {recentNews.length > 0 ? (
           recentNews.map((newsItem, index) => (
-            <article key={index} className='mb-4 p-4 bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200'>
-              {newsItem.image && 
-                <img src={newsItem.image} alt="" className="w-full h-32 object-cover rounded-md mb-2" />
-              }
-              <h3 className="font-bold">{newsItem.title}</h3>
-              <p className="text-gray-600">{new Date(newsItem.createdAt).toLocaleDateString()}</p>
-              <a href={`/blog/${newsItem._id}`} className="text-blue-600 hover:underline">Read More</a>
-            </article>
+            <Link to={`/blog/${newsItem._id}`} key={index} className="">
+              <article key={index} className='hover:shadow-lg transition-shadow duration-200 py-4'>
+                {newsItem.image && 
+                  <img src={newsItem.image} alt="" className="w-full aspect-video object-cover mb-2 rounded-md" />
+                }
+                <h3 className="font-bold">{newsItem.title}</h3>
+                {/* <p className="text-gray-600">{new Date(newsItem.createdAt).toLocaleDateString()}</p> */}
+                {/* <a href={`/news/${newsItem._id}`} className="text-blue-600 hover:underline">Read More</a> */}
+                <p className='text-[#fa3b3bb8]  font-medium text-xs py-1'>{newsItem.category.charAt(0).toUpperCase() + newsItem.category.slice(1)}</p>
+              </article>
+            </Link>
           ))
         ) : (
           <p>No recent news available.</p>

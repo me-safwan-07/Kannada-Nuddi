@@ -29,11 +29,11 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                     <hr className='border border-gray-400' />
                     <FakeAd  className="md:hidden block h-32 my-6"/>
                     {/* Grid for subsequent blog posts */}
-                    <div className="flex flex-col md:grid md:grid-cols-2 gap-2 w-full md:w-2/3 md:ml-2">
+                    <div className="flex flex-col md:grid md:grid-cols-2 gap-2 w-full md:ml-2">
                         {news.slice(1, 7).map((blog, index) => (
                             <div
                                 key={blog._id}
-                                className={`flex flex-row-reverse md:flex-col `}
+                                className={`flex flex-row md:flex-col `}
                             >
                             <Link to={`/blog/${blog._id}`} className="">
                                 {/* Desktop: Show image for index 0 and 1 */}
@@ -49,7 +49,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                 )}
 
                                 {/* Mobile: Show image for all indexes on the right */}
-                                <div className="flex flex-row-reverse flex-grow md:flex-col pl-2 w-full gap-2">
+                                <div className="border flex flex-row-reverse justify-between items-center md:flex-col pl-2 w-full gap-2">
                                     <img
                                         src={blog.image}
                                         alt={blog.title}
@@ -61,6 +61,9 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                         <h3 className="text-xs md:text-sm font-semibold mb-1">
                                             {truncateContent(blog.title, 90)}
                                         </h3>
+                                        <p className="">
+                                            {blog.title.length < 90 && truncateContent(blog.subtitle, 50)}
+                                        </p>
                                         {/* <div className="flex justify-between items-center">
                                             <p className="text-gray-500 text-xs flex items-center gap-1">
                                                 <LuTimer className="h-3 w-3" />

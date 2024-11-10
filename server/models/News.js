@@ -5,7 +5,13 @@ const NewsSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      maxlength: 200, // Set a maximum length for title
+      // maxlength: 200, // Set a maximum length for title
+    },
+    subtitle: {
+      type: String,
+      // un comment after deleting the old news that don't exist subtitles
+      // required: true, 
+      // maxlength: 200, // Set a maximum length for subtitl
     },
     content: {
       type: String,
@@ -21,10 +27,10 @@ const NewsSchema = new mongoose.Schema(
     image: {
       type: String,
     },
-    views: {
-      type: Number,
-      default: 0,
-    },
+    // views: {
+    //   type: Number,
+    //   default: 0,
+    // },
     slug: {
       type: String,
       unique: true, // Ensures slug is unique for each blog record

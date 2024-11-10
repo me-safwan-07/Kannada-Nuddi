@@ -19,6 +19,7 @@ import 'react-circular-progressbar/dist/styles.css';
 function CreateBlog() {
     const [formData, setFormData] = useState({
         title: '',
+        subtitle: '',
         category: '',
         content: '',
         image: '',
@@ -104,6 +105,7 @@ function CreateBlog() {
         // Prepare the data to be sent
         const newsData = {
             title: formData.title,
+            subtitle: formData.subtitle,
             category: formData.category,
             content: content,  // Assign Quill editor content to formData
             image: formData.image
@@ -128,28 +130,39 @@ function CreateBlog() {
     };
 
     return (
-        <div className='p-3 max-w-3xl mx-auto min-h-screen'>
+        <div className='p-3 max-w-3xl mx-auto min-h-screen text-black'>
             <ToastContainer />
             <h1 className="text-center text-3xl my-7 font-semibold">Write</h1>
             <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-                <Button type='submit' gradientDuoTone='purpleToPink' className='text-black'>
+                <Button type='submit' gradientDuoTone='purpleToPink' className=''>
                     Publish
                 </Button>
                 {/* Title Input */}
-                <div className="flex flex-col gap-4 sm:flex-row justify-between">
+                <div className="flex flex-col gap-4 justify-between">
                     <TextInput
                         type='text'
                         placeholder='Enter title'
                         required
                         id='title'
-                        className='flex-1'
+                        className='flex-1 text-black'
                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        row='3'
+                    />
+                    <TextInput
+                        type='text'
+                        // add the multiline
+                        placeholder='Enter subtitle'
+                        className='flex-1 text-black outline-none'
+                        onChange={(e) => setFormData({...formData, subtitle: e.target.value })}
+                        row='3'
                     />
                 </div>
 
                 {/* Category Select */}
                 <div className="mb-4">
-                    <Select onChange={(e) => setFormData({ ...formData, category: e.target.value })}>
+                    <Select
+                        className='text-black' 
+                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}>
                         <option value=''>Select a category</option>
                         {category.map((cat) => (
                             <option key={cat._id} value={cat.category}>
@@ -173,14 +186,16 @@ function CreateBlog() {
                 disabled={imageUploadProgress}
             >
                 {imageUploadProgress ? (
-                <div className='w-16 h-16'>
+                <div className='w-16 h-16 text-white'>
                         <CircularProgressbar
                             value={imageUploadProgress}
                             text={`${imageUploadProgress || 0}%`}
                         />
                     </div>
                 ) : (
-                    'Upload Image'
+                    <p className="text-black">
+                        Upload Image
+                    </p>
                 )}
                 </Button>
             </div>
@@ -193,7 +208,7 @@ function CreateBlog() {
                 />
                 )}
                 {/* Content Editor */}
-                <div className="mb-4">
+                <div className="mb-4 text-black bg-white">
                     <ReactQuill 
                         value={content}
                         onChange={setContent}
