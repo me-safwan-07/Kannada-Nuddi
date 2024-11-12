@@ -57,8 +57,8 @@ const Home = () => {
         fetchBlogs();
     }, [fetchBlogs]);
 
-    const truncateContent = (content, limit = 100) => {
-        const text = content.replace(/<[^>]*>/g, '');
+    const truncateContent = (text, limit = 100) => {
+        // const text = content.replace(/<[^>]*>/g, '');
         return text.length > limit ? `${text.substring(0, limit)}...` : text;
     };
 

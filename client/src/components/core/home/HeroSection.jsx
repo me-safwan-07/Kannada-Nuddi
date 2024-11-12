@@ -62,7 +62,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                             {truncateContent(blog.title, 90)}
                                         </h3>
                                         <p className="">
-                                            {blog.title.length < 90 && truncateContent(blog.subtitle, 50)}
+                                            {/* {blog.title.length < 90 && truncateContent(blog.subtitle, 50)} */}
                                         </p>
                                         {/* <div className="flex justify-between items-center">
                                             <p className="text-gray-500 text-xs flex items-center gap-1">

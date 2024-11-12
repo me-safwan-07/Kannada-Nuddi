@@ -12,6 +12,7 @@ import AdminLogin from './pages/AdminLogin';
 import DashboardCategory from './components/core/dashboard/DashboardCategory';
 import CategoryPage from './pages/CategoryPage';
 import Header from './components/common/Header';
+import { NewsStories } from './pages/NewsStories';
 
 const Routers = () => {
   const { isLoggedIn } = useContext(AuthContext);
@@ -41,6 +42,7 @@ const RouteHandler = ({ isLoggedIn }) => {
           <Route path="/create" element={<CreateBlog />} />
           <Route path='/blog/:id' element={<BlogPage />} />
           <Route path='/login' element={<Login />} />
+          <Route path='stories' element={<NewsStories />} />
           {isLoggedIn && (
             <>
               <Route path='/dashboard' element={<Dashboard />} />
