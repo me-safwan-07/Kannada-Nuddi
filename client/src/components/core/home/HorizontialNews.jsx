@@ -6,11 +6,11 @@ import 'react-circular-progressbar/dist/styles.css';
 
 export const HorizontialNews = ({ news, truncateContent, formatDate, titleSize}) => {
   return (
-    <div className="flex flex-col md:flex-row justify-between gap-4 w-full md:w-full md:ml-2 md:px-2">
+    <div className="flex flex-col md:flex-row justify-between gap-2 w-full md:w-full md:pb-3">
         {news.map((blog) => (
             <div
                 key={blog._id}
-                className="flex flex-row-reverse md:flex-col relative md:w-1/4 mt-2 pt-2"
+                className="flex flex-row-reverse md:flex-col relative md:w-1/4"
             >
                 <Link to={`/blog/${blog._id}`} className="gap-2 mx-d2 flex flex-">
                     {/* Mobile: Show image for all indexes on the right */}
@@ -20,7 +20,7 @@ export const HorizontialNews = ({ news, truncateContent, formatDate, titleSize})
                             alt={blog.title}
                             className="sm:w-32 aspect-video h-10 md:w-full md:h-auto object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
                         />
-                        <div className='flex-grow h-1/3'>
+                        <div className='flex-grow h-1/3 mt-3'>
                             <h3 className="text-sm font-semibold mb-2">
                                 {truncateContent(blog.title, 70)}
                             </h3>

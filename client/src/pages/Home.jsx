@@ -71,22 +71,22 @@ const Home = () => {
         <div className="flex flex-col md:flex-row md:mx-auto p-4 space-y-6 md:space-y-0">
             {allNews.length > 0 ? (
                 <>
-                    <div className="w-full md:w-4/5 space-y-6">
+                    <div className="border-r border-slate-500 w-full md:w-4/5 space-y-4">
                         {error && <div className="text-red-500">{error}</div>}
 
                         {/* Hero Section */}
                         {heroSectionNews.length > 0 && (
-                            <div className="">
+                            <div className="border-b border-slate-300 mx-4">
                                 <HeroSection news={heroSectionNews} truncateContent={truncateContent} formatDate={formatDate} />
-                                <hr className='mt-3'/>
+                                {/* <hr className='mt-3'/> */}
                             </div>
                         )}
                         
                         {/* Horizontal News */}
                         {firstHorizontalNews.length > 0 && (
-                            <div className="">
+                            <div className="border-b border-slate-500 mx-4" >
                                 <HorizontialNews news={firstHorizontalNews} truncateContent={truncateContent} formatDate={formatDate} />
-                                <hr className='mt-3'/>
+                                {/* <hr className='mt-3'/> */}
                             </div>
                         )}
                         {sixSmallImagesNews.length > 0 && (
@@ -106,7 +106,7 @@ const Home = () => {
                     </div>
 
                     {/* Sidebar for Ads */}
-                    <aside className="w-full md:w-1/5 flex flex-col space-y-4">
+                    <aside className=" pl-3 w-full md:w-1/5 flex flex-col space-y-4">
                         <FakeAd className="w-full h-64 bg-black-100" />
                     </aside>                
                 </>

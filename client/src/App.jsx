@@ -4,7 +4,7 @@ import Routers from './Routes';
 
 function App() {
   return (
-    <div className="App">
+    <div className="min-w-80 ">
       {/* Main content with routes */}
       <main>
         <Routers />
