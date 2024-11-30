@@ -12,7 +12,7 @@ export const HorizontialNews = ({ news, truncateContent, formatDate, titleSize})
                 key={blog._id}
                 className="flex flex-row-reverse md:flex-col relative md:w-1/4"
             >
-                <Link to={`/blog/${blog._id}`} className="gap-2 mx-d2 flex flex-">
+                <Link to={`/blog/${blog._id}`} className="gap-2 flex ">
                     {/* Mobile: Show image for all indexes on the right */}
                     <div className="flex flex-row-reverse md:flex-col justify-between pl-2 w-full">
                         <img

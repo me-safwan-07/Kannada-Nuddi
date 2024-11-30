@@ -90,15 +90,15 @@ const Home = () => {
                             </div>
                         )}
                         {sixSmallImagesNews.length > 0 && (
-                            <div className="">
+                            <div className="border-b pb-4  mx-4 border-slate-500">
                                 <SixSmallImages news={sixSmallImagesNews} truncateContent={truncateContent} formatDate={formatDate} />
-                                <hr className='text-gray-600 mt-3'/>
+                                {/* <hr className='text-gray-600 mt-3'/> */}
                             </div>
                         )}
                         {secondHorizontalNews.length > 0 && (
-                            <div className="">
+                            <div className="border-b border-slate-500 mx-4">
                                 <HorizontialNews news={secondHorizontalNews} truncateContent={truncateContent} formatDate={formatDate} />
-                                <hr className='mt-3'/>
+                                {/* <hr className='mt-3'/> */}
                             </div>
                         )}
 
