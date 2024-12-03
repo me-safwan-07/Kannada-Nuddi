@@ -97,8 +97,8 @@ const Header = () => {
             </div>
 
             {/* Mobile Navbar */}
-            {navOptions && (
-                <div className="lg:hidden bg-black-100 text-white h-12 sm:h-10 flex items-center justify-center shadow-md">
+            {navOptions && navOptions.length > 0 && (
+                <div className="lg:hidden bg-black-100 text-white h-12 sm:h-10 flex items-center justify-center shadow-md scroll-container">
                     <nav className="flex items-center overflow-x-auto whitespace-nowrap">
                         {navOptions.map((cat) => (
                             <Link
