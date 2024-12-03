@@ -68,15 +68,15 @@ const Home = () => {
     };
 
     return (
-        <div className="flex flex-col md:flex-row md:mx-auto p-4 space-y-6 md:space-y-0">
+        <div className="flex flex-col md:flex-row md:mx-auto md:p-4 space-y-6 md:space-y-0">
             {allNews.length > 0 ? (
                 <>
-                    <div className="border-r border-slate-500 w-full md:w-4/5 space-y-4">
+                    <div className="md:border-r border-slate-500 w-full md:w-4/5 space-y-4">
                         {error && <div className="text-red-500">{error}</div>}
 
                         {/* Hero Section */}
                         {heroSectionNews.length > 0 && (
-                            <div className="border-b border-slate-300 mx-4">
+                            <div className="md:border-b border-slate-300 mx-4">
                                 <HeroSection news={heroSectionNews} truncateContent={truncateContent} formatDate={formatDate} />
                                 {/* <hr className='mt-3'/> */}
                             </div>
