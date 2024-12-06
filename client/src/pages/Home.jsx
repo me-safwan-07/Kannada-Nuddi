@@ -76,7 +76,7 @@ const Home = () => {
 
                         {/* Hero Section */}
                         {heroSectionNews.length > 0 && (
-                            <div className="md:border-b border-slate-300 mx-4">
+                            <div className="md:border-b border-slate-500 mx-4">
                                 <HeroSection news={heroSectionNews} truncateContent={truncateContent} formatDate={formatDate} />
                                 {/* <hr className='mt-3'/> */}
                             </div>
