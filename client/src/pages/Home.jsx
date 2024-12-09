@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { LuTimer } from "react-icons/lu";
+// import { Link } from 'react-router-dom';
+// import { LuTimer } from "react-icons/lu";
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -8,7 +8,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import FakeAd from '../components/common/FakeAd';
 import { HeroSection } from '../components/core/home/HeroSection';
 import { HorizontialNews } from '../components/core/home/HorizontialNews';
-import { ThreelayoutNews } from '../components/core/home/ThreelayoutNews';
+// import { ThreelayoutNews } from '../components/core/home/ThreelayoutNews';
 import { getAllNews } from '../services/operations/newsApi';
 import { SixSmallImages } from '../components/core/home/sixSmallImage';
 
