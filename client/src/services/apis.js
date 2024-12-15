@@ -1,5 +1,5 @@
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
-
+console.log(BASE_URL)
 export const endpoints = {
   SENDOTP_API: `${BASE_URL}/auth/sendotp`,
   SIGNUP_API: `${BASE_URL}/auth/signup`,
@@ -17,7 +17,7 @@ export const profileEndpoints = {
 
 // NEWS ENDPOINTS
 export const newsEndpoints = {
-  GET_ALL_NEWS: `${BASE_URL}/news`,
+  GET_ALL_NEWS: "http://localhost:3000/api/news",
   CREATE_NEWS: `${BASE_URL}/news/getNewsByCategory`,
   GET_NEWS_BY_ID: `${BASE_URL}/news`,
   UPDATE_NEWS: `${BASE_URL}/news/update/`,
@@ -32,4 +32,8 @@ export const categoryEndpoints = {
     GET_SINGLE_CATEGORY_API: `${BASE_URL}/category/:id`,
     UPDATE_CATEGORY_API: `${BASE_URL}/category/update/:id`,
     DELETE_CATEGORY_API: `${BASE_URL}/category/delete/:id`,
+};
+
+export const storysEndpoints = {
+    STORY_API: "http://localhost:3000/api/story",
 };

@@ -11,10 +11,13 @@ import { HorizontialNews } from '../components/core/home/HorizontialNews';
 // import { ThreelayoutNews } from '../components/core/home/ThreelayoutNews';
 import { getAllNews } from '../services/operations/newsApi';
 import { SixSmallImages } from '../components/core/home/sixSmallImage';
+import { Stories } from '../components/core/Stories';
+import { getAllStory } from '../services/operations/storyApi';
 
 const Home = () => {
     const [allNews, setAllNews] = useState([]);
     const [category, setCategory] = useState([]);
+    const [stories, setStories] = useState([]);
     const [error, setError] = useState('');
 
     const [heroSectionNews, setHeroSectionNews] = useState([]);
@@ -22,7 +25,7 @@ const Home = () => {
     const [sixSmallImagesNews, setSixSmallImagesNews] = useState([]);
     const [secondHorizontalNews, setSecondHorizontalNews] = useState([]);
 
-    const [sliceblog, setSliceblog] = useState([]);
+    // const [sliceblog, setSliceblog] = useState([]);
     const [titleSize, setTitleSize] = useState(window.innerWidth <= 425 ? 75 : 150);
 
     const handleResize = useCallback(() => {
@@ -37,6 +40,11 @@ const Home = () => {
     const fetchBlogs = useCallback(async () => {
         try {
             const data = await getAllNews();
+
+            if (!data) {
+                return console.error("No data found");
+            }
+
             if (data) {
                 setAllNews(data);
                 setHeroSectionNews(data.slice(0, 7));
@@ -53,9 +61,24 @@ const Home = () => {
         }
     }, []);
 
+    const fetchStories = useCallback(async () => {
+        try {
+            const data = await getAllStory();
+            if (data) {
+                setStories(data)
+            }
+            // console.log(data)
+        } catch(error) {
+            console.error('Error fetching stories:', error);
+            setError('Failed to fetch stories. Please try again later.');
+        }
+    })
+
     useEffect(() => {
         fetchBlogs();
-    }, [fetchBlogs]);
+        fetchStories();
+        // console.log(allNews)
+    }, []);
 
     const truncateContent = (text, limit = 100) => {
         // const text = content.replace(/<[^>]*>/g, '');
@@ -68,9 +91,10 @@ const Home = () => {
     };
 
     return (
-        <div className="flex flex-col md:flex-row md:mx-auto md:p-4 space-y-6 md:space-y-0">
+        <div className=" md:flex-row md:mx-auto md:p-4 space-y-6 md:space-y-0">
             {allNews.length > 0 ? (
                 <>
+                <div className="flex ">
                     <div className="md:border-r border-slate-500 w-full md:w-4/5 space-y-4">
                         {error && <div className="text-red-500">{error}</div>}
 
@@ -108,8 +132,13 @@ const Home = () => {
                     {/* Sidebar for Ads */}
                     <aside className=" pl-3 w-full md:w-1/5 flex flex-col space-y-4">
                         <FakeAd className="w-full h-64 bg-black-100" />
-                    </aside>                
-                </>
+                    </aside>
+                </div>
+
+                <div className="">
+                        <Stories storyData={stories}/>    
+                </div>                
+            </>
                 
             ) : <p>Loaidng....</p>}
             

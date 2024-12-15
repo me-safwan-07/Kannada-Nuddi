@@ -117,7 +117,7 @@ function CreateBlog() {
             if (res.status === 201) {
                 const blogId = res.data.blogId;
                 toast.success('Blog published successfully!');
-                navigate('/');
+                navigate('/dashboard');
             } else {
                 const errorMessage = res.data.message || 'Something went wrong';
                 toast.error(errorMessage);

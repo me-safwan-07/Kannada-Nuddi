@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^1.7.7",
     "compressorjs": "^1.2.1",
+    "core-js-pure": "^3.39.0",
     "firebase": "^11.0.1",
     "flowbite-react": "^0.10.2",
     "lucide-react": "^0.454.0",
@@ -23,6 +24,7 @@
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.3.1",
     "react-drag-drop-files": "^2.4.0",
+    "react-google-stories": "^1.0.4",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.3.0",
     "react-insta-stories": "^2.7.0",
