@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 export const Stories = ({ storyData }) => {
   return (
-    <div className="m-4">
+    <div className="m-4 border">
       <h1 className="text-2xl font-bold text-white pb-2">Web Stories</h1>
       <div className="flex gap-4">
         {storyData.slice(0, 6).map((story, index) => (
           <Link
             to={`/story/${story._id}`}
             key={index}
-            className="w-1/6 bg-gray-00 rounded-lg shadow-md overflow-hidden"
+            className="md:w-1/6 bg-gray-00 rounded-lg shadow-md overflow-hidden border "
           >
             {/* Story Progress Bar */}
             <div className="flex gap-1">
@@ -25,8 +25,10 @@ export const Stories = ({ storyData }) => {
             <img
               src={story.coverImage}
               alt={story.title}
-              className="w-full h-48 object-cover"
+              className="w-full h-60 object-cover"
+              loading="lazy" // Enable lazy loading
             />
+
             <div className="p-4">
               <h2 className="text-lg font-semibold text-white">{story.title}</h2>
               <p className="text-sm text-slate-500 mt-2">Published on: {story.date}</p>

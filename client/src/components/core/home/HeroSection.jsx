@@ -11,7 +11,12 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                     {/* Main blog post with larger layout */}
                     <div className="md:pr-2 flex flex-row md:flex-row items-start md:mb-4 overflow-hidden w-full md:w-3/5 md:h-3/5">
                         <Link to={`/blog/${news[0]._id}`} className="w-full relative">
-                            <img className="w-full relative aspect-video transition-transform duration-300 ease-in-out transform hover:scale-105" src={news[0].image} alt={news[0].title} />
+                            <img 
+                                src={news[0].image} 
+                                alt={news[0].title} 
+                                loading="lazy" 
+                                className="w-full relative aspect-video transition-transform duration-300 ease-in-out transform hover:scale-105" 
+                            />
                             <div className="p-3 flex flex-col">
                                 <h3 className="text-lg lg:text-xl font-semibold">{news[0].title}</h3>
                                 {/* {news[0].title.length < 100 && (
@@ -42,6 +47,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                             <img
                                                 src={news.image}
                                                 alt={news.title}
+                                                loading="lazy"
                                                 className="hidden md:block h-1/2 w-full rounded-sm aspect-video transition-transform duration-300 ease-in-out transform "
                                             />
 
@@ -53,6 +59,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                         <img
                                             src={news.image}
                                             alt={news.title}
+                                            loading="lazy"
                                             className={`block md:hidden sm:w-32 aspect-video h-10 md:w-1/5 md:h-auto object-cover transition-transform duration-300 ease-in-out transform hover:scale-105 ${
                                             index < 2 ? 'md:hidden' : ''
                                             }`}
@@ -81,6 +88,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                             <img
                                                 src={news.image}
                                                 alt={news.title}
+                                                loading="lazy"
                                                 className="hidden md:block h-1/2 w-full rounded-sm aspect-video transition-transform duration-300 ease-in-out transform "
                                             />
 
@@ -92,6 +100,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                         <img
                                             src={news.image}
                                             alt={news.title}
+                                            loading="lazy"
                                             className={`block md:hidden sm:w-32 aspect-video h-10 md:w-1/5 md:h-auto object-cover transition-transform duration-300 ease-in-out transform hover:scale-105 ${
                                             index < 2 ? 'md:hidden' : ''
                                             }`}

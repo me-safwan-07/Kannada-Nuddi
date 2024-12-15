@@ -35,16 +35,19 @@ export const WebStoryById = () => {
     <AmpStory
       title="Sample Web Story"
       publisher="BlexZET"
-      publisher-logo-src="/brandlogo.png"
-      poster-portrait-src="/brandlogo.png"
+      // publisher-logo-src="/brandlogo.png"
+      // poster-portrait-src="/brandlogo.png"
     >
       {slides.map((slide, index) => (
-        <AmpStoryPage key={slide._id || index} id={`slide-${index}`}>
+        <AmpStoryPage 
+          key={slide._id || index} id={`slide-${index}`}
+          className=""
+          >
           <AmpStoryGridLayer template="fill">
             <AmpImg
               src={slide.image || ""}
-              width="720"
-              height="1280"
+              width="50"
+              height="50"
               layout="responsive"
             />
           </AmpStoryGridLayer>
