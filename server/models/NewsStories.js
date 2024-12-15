@@ -1,16 +1,31 @@
 import mongoose from "mongoose";
 
-const NewsStoriesSchema = new mongoose.Schema({
-    stories : {
+const NewsStoriesSchema = new mongoose.Schema(
+    {
         title: {
             type: String,
             required: true
         },
-        imageUrl: String,
-        caption: String,
-        createdAt: { type: Date, default: Date.now },
+        coverImage: {
+            type: String,
+            required: true,
+        },
+        slides: [
+            {
+                image: {
+                    type: String,
+                    required: true
+                },
+                caption: {
+                    type: String
+                }
+            },
+        ],
+    },
+    {
+        timestamps: true
     }
-});
+);
 
 const NewsStories = mongoose.model("NewsStories", NewsStoriesSchema);
 
