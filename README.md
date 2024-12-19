@@ -1,1 +1,1 @@
-# News.com
+# Kannada-Nuddi
