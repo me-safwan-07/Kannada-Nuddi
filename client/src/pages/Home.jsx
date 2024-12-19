@@ -10,9 +10,9 @@ import { HeroSection } from '../components/core/home/HeroSection';
 import { HorizontialNews } from '../components/core/home/HorizontialNews';
 // import { ThreelayoutNews } from '../components/core/home/ThreelayoutNews';
 import { getAllNews } from '../services/operations/newsApi';
-import { SixSmallImages } from '../components/core/home/sixSmallImage';
 import { Stories } from '../components/core/Stories';
 import { getAllStory } from '../services/operations/storyApi';
+import { SixSmallImages } from '../components/core/home/SixSmallImage';
 
 const Home = () => {
     const [allNews, setAllNews] = useState([]);
@@ -101,32 +101,45 @@ const Home = () => {
                         {/* Hero Section */}
                         {heroSectionNews.length > 0 && (
                             <div className="md:border-b border-slate-500 mx-4">
-                                <HeroSection news={heroSectionNews} truncateContent={truncateContent} formatDate={formatDate} />
-                                {/* <hr className='mt-3'/> */}
+                                <HeroSection 
+                                    news={heroSectionNews} 
+                                    truncateContent={truncateContent} 
+                                    formatDate={formatDate} 
+                                />
                             </div>
                         )}
                         
                         {/* Horizontal News */}
                         {firstHorizontalNews.length > 0 && (
                             <div className="border-b border-slate-500 mx-4" >
-                                <HorizontialNews news={firstHorizontalNews} truncateContent={truncateContent} formatDate={formatDate} />
-                                {/* <hr className='mt-3'/> */}
-                            </div>
-                        )}
-                        {sixSmallImagesNews.length > 0 && (
-                            <div className="border-b pb-4  mx-4 border-slate-500">
-                                <SixSmallImages news={sixSmallImagesNews} truncateContent={truncateContent} formatDate={formatDate} />
-                                {/* <hr className='text-gray-600 mt-3'/> */}
-                            </div>
-                        )}
-                        {secondHorizontalNews.length > 0 && (
-                            <div className="border-b border-slate-500 mx-4">
-                                <HorizontialNews news={secondHorizontalNews} truncateContent={truncateContent} formatDate={formatDate} />
-                                {/* <hr className='mt-3'/> */}
+                                <HorizontialNews 
+                                    news={firstHorizontalNews} 
+                                    truncateContent={truncateContent} 
+                                    formatDate={formatDate} 
+                                />
                             </div>
                         )}
 
-                        {/* // here the web stories will be declare */}
+                        {sixSmallImagesNews.length > 0 && (
+                            <div className="border-b pb-4  mx-4 border-slate-500">
+                                <SixSmallImages 
+                                    news={sixSmallImagesNews} 
+                                    truncateContent={truncateContent} 
+                                    formatDate={formatDate} 
+                                />
+                            </div>
+                        )}
+
+                        {secondHorizontalNews.length > 0 && (
+                            <div className="border-b border-slate-500 mx-4">
+                                <HorizontialNews 
+                                    news={secondHorizontalNews} 
+                                    truncateContent={truncateContent} 
+                                    formatDate={formatDate} 
+                                />
+                            </div>
+                        )}
+
                     </div>
 
                     {/* Sidebar for Ads */}

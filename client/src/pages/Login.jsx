@@ -1,5 +1,5 @@
 // pages/Login.js
-import React, { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import process from 'process';
@@ -13,8 +13,8 @@ export function Login() {
     const { setIsLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const correctEmail = process.env.REACT_APP_ADMIN_EMAIL || 'mesafwan07@gmail.com'; // Ensure correct prefix for React env vars
-    const correctPassword = process.env.REACT_APP_ADMIN_PASSWORD || 'Muha_2005';
+    const correctEmail = process.env.REACT_APP_ADMIN_EMAIL; 
+    const correctPassword = process.env.REACT_APP_ADMIN_PASSWORD;
 
     const generateRandomString = () => {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
