@@ -1,42 +1,59 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
-export const SixSmallImages = ({ news, truncateContent, formatDate, titleSize }) => {
+export const SixSmallImages = ({ news, truncateContent, formatDate }) => {
   return (
-    <div className="justify-between gap-4 w-full">
-      <div className="flex mb-2">
-        {news.slice(0,3).map((blog, index) => (
-          <div key={index} className={`w-1/3 flex justify-center items-center gap-2  px-2 pb-2 border-slate-500 ${index !== 2 ? "border-r" : ""}`}>
-              <div className={`flex pr-2`}>
-                  <h3 className={`font-medium`}>{truncateContent(blog.title,75)}</h3>
-                  {/* <p className="text-gray-500 text-sm md:text-base">{truncateContent(blog.content)}</p> */}
-                  <img
-                    src={blog.image}
-                    alt="Blog"
-                    className="w-24 h-24 object-cover rounded-md"
-                    />
-              </div>
-          </div>
+    <div className="flex flex-col gap-4 w-full">
+      {/* Top 3 News */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {news.slice(0, 3).map((blog, index) => (
+          <Link
+            to={`/blog/${blog._id}`}
+            key={index}
+            className="flex flex-row sm:flex-col items-center sm:items-start gap-4 border-b sm:border-b-0 sm:border-r border-slate-500 pb-3 sm:pb-0 sm:pr-3"
+          >
+            {/* Title Section */}
+            <div className="flex-1">
+              <h3 className="text-sm sm:text-base font-medium text-left">
+                {truncateContent(blog.title, 75)}
+              </h3>
+            </div>
+            {/* Image Section */}
+            <img
+              src={blog.image}
+              alt="Blog"
+              className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-md"
+            />
+          </Link>
         ))}
       </div>
-      <div className="border-b border-slate-500 mb-3"></div>
-      <div className="flex">
-        {news.slice(3,6).map((blog, index) => (
-          <div key={index} className={`w-1/3 flex justify-center items-center gap-2  px-2 pb-2 border-slate-500 ${index !== 2 ? "border-r" : ""}`}>
-              <div className="flex gap-2  pr-2">
-                  <h3 className={`font-medium`}>{truncateContent(blog.title,75)}</h3>
-                  {/* <p className="text-gray-500 text-sm md:text-base">{truncateContent(blog.content)}</p> */}
-                  <img
-                    src={blog.image}
-                    alt="Blog"
-                    className="w-24 h-24 object-cover rounded-md"
-                    />
-              </div>
-          </div>
-        ))}
 
+      {/* Divider */}
+      <div className="border-b border-slate-500 mb-3"></div>
+
+      {/* Bottom 3 News */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {news.slice(3, 6).map((blog, index) => (
+          <Link
+            to={`/blog/${blog._id}`}
+            key={index}
+            className="flex flex-row sm:flex-col items-center sm:items-start gap-4 border-b sm:border-b-0 sm:border-r border-slate-500 pb-3 sm:pb-0 sm:pr-3"
+          >
+            {/* Title Section */}
+            <div className="flex-1">
+              <h3 className="text-sm sm:text-base font-medium text-left">
+                {truncateContent(blog.title, 75)}
+              </h3>
+            </div>
+            {/* Image Section */}
+            <img
+              src={blog.image}
+              alt="Blog"
+              className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-md"
+            />
+          </Link>
+        ))}
       </div>
     </div>
   );
 };
-
-// export default SixSmallImages;

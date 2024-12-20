@@ -34,8 +34,8 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                     {/* <hr className='border border-gray-400' /> */}
                     <FakeAd  className="md:hidden block h-32 my-6"/>
                     {/* Grid for subsequent blog posts */}
-                    <div className="flex flex-col md:grid md:grid-cols-2 gap-4 w-full md:ml-2">
-                        <div className="md:border-x  border-slate-500 px-3 mb-4">
+                    <div className="flex flex-col md:grid md:grid-cols-2 md:gap-4 w-full md:ml-2">
+                        <div className="md:border-x  border-slate-500 px-1 mb-4">
                             {news.slice(1,4).map((news, index) => (
                                 <Link 
                                     to={`blog/${news._id}`} 
@@ -55,7 +55,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                     )}
 
                                      {/* Mobile: Show image for all indexes on the right */}
-                                    <div className={`${index !== 2 ? "border-b" : ""} border-slate-500 p-2 flex flex-row-reverse justify-between items-center md:flex-col pl-2 w-full gap-2`}>
+                                    <div className={`${index !== 2 ? "md:border-b" : ""} border-b border-slate-500 p-2 flex flex-row-reverse justify-between items-center md:flex-col pl-2 w-full gap-2`}>
                                         <img
                                             src={news.image}
                                             alt={news.title}

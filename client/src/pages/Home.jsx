@@ -94,7 +94,7 @@ const Home = () => {
         <div className=" md:flex-row md:mx-auto md:p-4 space-y-6 md:space-y-0">
             {allNews.length > 0 ? (
                 <>
-                <div className="flex ">
+                <div className="flex flex-col gap-2">
                     <div className="md:border-r border-slate-500 w-full md:w-4/5 space-y-4">
                         {error && <div className="text-red-500">{error}</div>}
 
@@ -130,7 +130,7 @@ const Home = () => {
                     </div>
 
                     {/* Sidebar for Ads */}
-                    <aside className=" pl-3 w-full md:w-1/5 flex flex-col space-y-4">
+                    <aside className="pl-3 w-full md:w-1/5 flex flex-col space-y-4">
                         <FakeAd className="w-full h-64 bg-black-100" />
                     </aside>
                 </div>
