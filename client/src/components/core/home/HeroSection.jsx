@@ -17,7 +17,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                 loading="lazy" 
                                 className="w-full relative aspect-video transition-transform duration-300 ease-in-out transform hover:scale-105" 
                             />
-                            <div className="p-3 flex flex-col">
+                            <div className="py-2 md:p-3 flex flex-col">
                                 <h3 className="text-lg lg:text-xl font-semibold">{news[0].title}</h3>
                                 {/* {news[0].title.length < 100 && (
                                     <p dangerouslySetInnerHTML={{ __html: truncateContent(news[0].content, 75) }} className="text-white-700 text-md"></p>
@@ -32,10 +32,10 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                         </Link>
                     </div>
                     {/* <hr className='border border-gray-400' /> */}
-                    <FakeAd  className="md:hidden block h-32 my-6"/>
+                    {/* <FakeAd  className="m-2 md:hidden block h-32 my-6"/> */}
                     {/* Grid for subsequent blog posts */}
                     <div className="flex flex-col md:grid md:grid-cols-2 md:gap-4 w-full md:ml-2">
-                        <div className="md:border-x  border-slate-500 px-1 mb-4">
+                        <div className="md:border-x border-slate-500 py-1 md:mb-4">
                             {news.slice(1,4).map((news, index) => (
                                 <Link 
                                     to={`blog/${news._id}`} 
@@ -50,12 +50,11 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                                 loading="lazy"
                                                 className="hidden md:block h-1/2 w-full rounded-sm aspect-video transition-transform duration-300 ease-in-out transform "
                                             />
-
                                         </div>
                                     )}
 
                                      {/* Mobile: Show image for all indexes on the right */}
-                                    <div className={`${index !== 2 ? "md:border-b" : ""} border-b border-slate-500 p-2 flex flex-row-reverse justify-between items-center md:flex-col pl-2 w-full gap-2`}>
+                                    <div className={`${index !== 2 ? "border-b md:border-b-0" : ""} border-slate-500 py-2  flex flex-row-reverse justify-between items-center md:flex-col pl-2 w-full gap-2`}>
                                         <img
                                             src={news.image}
                                             alt={news.title}
@@ -75,6 +74,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                     </div>
                                 </Link>
                             ))}
+                            <div className="border-b md:border-b-0 border-slate-500 py-1 md:mb-4"></div>
                         </div>
                         <div className="pr-2 mb-4">
                             {news.slice(4,8).map((news, index) => (
@@ -96,7 +96,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                     )}
 
                                      {/* Mobile: Show image for all indexes on the right */}
-                                    <div className={`${index !== 2 ? "border-b" : ""} border-slate-500 p-2 flex flex-row-reverse justify-between items-center md:flex-col pl-2 w-full gap-2`}>
+                                    <div className={`${index !== 2 ? "border-b md:border-b-0" : ""} border-slate-500 py-2  flex flex-row-reverse justify-between items-center md:flex-col pl-2 w-full gap-2`}>
                                         <img
                                             src={news.image}
                                             alt={news.title}

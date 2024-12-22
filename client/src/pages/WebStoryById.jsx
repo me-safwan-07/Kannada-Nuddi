@@ -8,6 +8,7 @@ import {
   AmpStoryBookend,
 } from "react-google-stories";
 import { useParams } from "react-router-dom";
+import { StorySkeleton } from "../components/common/skeleton/StorySkeleton";
 
 export const WebStoryById = () => {
   const { storyId } = useParams();
@@ -28,7 +29,7 @@ export const WebStoryById = () => {
   }, []);
 
   if (!slides.length) {
-    return <div>Loading...</div>; // Show loading state if slides are not yet loaded
+    return <StorySkeleton />// Show loading state if slides are not yet loaded
   }
 
   return (
@@ -46,8 +47,8 @@ export const WebStoryById = () => {
           <AmpStoryGridLayer template="fill">
             <AmpImg
               src={slide.image || ""}
-              width="50"
-              height="50"
+              width="100"
+              height="100"
               layout="responsive"
             />
           </AmpStoryGridLayer>

@@ -10,7 +10,7 @@ export const HorizontialNews = ({ news, truncateContent, formatDate }) => {
       {news.map((blog) => (
         <div
           key={blog._id}
-          className="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col"
+          className="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col mb-3"
         >
           <Link to={`/blog/${blog._id}`} className="group flex flex-col h-full">
             {/* Image Section */}

@@ -2,8 +2,8 @@ import React from 'react';
 
 function FakeAd({ className }) {
   return (
-    <div className={`flex bg-gray-500 text-white p-4 rounded shadow-lg ${className}`}>
-      <p className='align-middle text-gray-100'>Advetisment</p>
+    <div className={`flex justify-center bg-gray-400 text-white py-2 rounded shadow-lg ${className}`}>
+      <p className='flex text-gray-300'>Advetisment</p>
     </div>
   );
 }
