@@ -1,3 +1,5 @@
+import flowbitePlugin from 'flowbite/plugin';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -9,11 +11,11 @@ export default {
     extend: {
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],
-        serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'], // Fixed syntax
+        serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       },
     },
   },
   plugins: [
-    require('flowbite/plugin'),
+    flowbitePlugin,
   ],
 }
