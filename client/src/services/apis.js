@@ -17,7 +17,7 @@ export const profileEndpoints = {
 
 // NEWS ENDPOINTS
 export const newsEndpoints = {
-  GET_ALL_NEWS: "http://localhost:3000/api/news",
+  GET_ALL_NEWS: `${BASE_URL}/news`,
   CREATE_NEWS: `${BASE_URL}/news/getNewsByCategory`,
   GET_NEWS_BY_ID: `${BASE_URL}/news`,
   UPDATE_NEWS: `${BASE_URL}/news/update/`,
@@ -35,5 +35,5 @@ export const categoryEndpoints = {
 };
 
 export const storysEndpoints = {
-    STORY_API: "http://localhost:3000/api/story",
+    STORY_API: `${BASE_URL}/story`,
 };
