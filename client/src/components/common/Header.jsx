@@ -37,7 +37,7 @@ const Header = () => {
         <div>
             <div className="flex items-center justify-between px-2 bg-black text-white h-14">
                 <div className="text-xl md:text-xl font-bold">
-                    <Link to="/">WEBSITE NAME</Link>
+                    <Link to="/">KANNADA NUDDI</Link>
                 </div>
                 <nav className="hidden lg:flex items-center overflow-x-auto whitespace-nowrap">
                     {navOptions.length > 0 && (
