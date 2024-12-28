@@ -11,7 +11,7 @@ export const getAllStory = async () => {
     let result = [];
 
     try {
-        const response = await apiConnector("GET", "http://localhost:3000/api/story");
+        const response = await apiConnector("GET", STORY_API);
         if (!response.data) {
             throw new Error("Could not Fetch news");
         }
