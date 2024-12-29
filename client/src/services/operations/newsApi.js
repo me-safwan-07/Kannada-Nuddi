@@ -21,7 +21,7 @@ export const getAllNews = async () => {
         if (!response.data) {
             throw new Error("Could not Fetch news");
         }
-        result = response.data
+        result = response.data;
     } catch (error) {
         console.log("GET_ALL_NEWS API error...........: " + error)
         toast.error(error.message);
@@ -96,11 +96,12 @@ export const deleteNews = async (id) => {
     let result = null;
 
     try {
-        const response = await apiConnector("DELETE", DELETE_NEWS.replace(":id", id));
-        if (!response?.data?.success) {
+        const response = await apiConnector("DELETE", `${DELETE_NEWS}/${id}`);
+        if (!response) {
+            console.log(response)
             throw new Error("Could not delete news");
         }
-        result = response?.data?.data; // Assuming a confirmation response is returned
+        result = response?.data; // Assuming a confirmation response is returned
         toast.success("News deleted successfully!");
     } catch (error) {
         console.log("DELETE_NEWS API error...........: " + error);
