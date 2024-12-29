@@ -20,7 +20,7 @@ export const newsEndpoints = {
   CREATE_NEWS: `${BASE_URL}/news/create`,
   GET_NEWS_BY_ID: `${BASE_URL}/news`,
   UPDATE_NEWS: `${BASE_URL}/news/update/`,
-  DELETE_NEWS: `${BASE_URL}/news/delete/`,
+  DELETE_NEWS: `${BASE_URL}/news/delete`,
 };
 
 
