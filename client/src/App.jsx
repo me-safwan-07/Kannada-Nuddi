@@ -2,6 +2,7 @@ import './App.css';
 import GoToTop from './components/common/GoTop';
 import Header from './components/common/Header';
 import Routers from './Routes';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routers />
       </main>
         <GoToTop />
+      <Analytics />
     </div>
   );
 }
