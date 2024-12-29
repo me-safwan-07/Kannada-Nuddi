@@ -34,6 +34,12 @@ const Header = () => {
         setIsDropdownOpen(prev => !prev);
     };
 
+    // Filter categories that have corresponding news
+    const categoriesWithNews = navOptions.filter((cat) => {
+        // Check if there's news in the current category
+        return allNews.some((newsItem) => newsItem.category.toLowerCase() === cat.category.toLowerCase());
+    });
+
     return (
         <div>
             <div className="flex items-center justify-between px-2 bg-black text-white h-14">
@@ -41,19 +47,21 @@ const Header = () => {
                     <Link to="/">KANNADA NUDDI</Link>
                 </div>
                 <nav className="hidden lg:flex items-center overflow-x-auto whitespace-nowrap">
-                    {navOptions.length > 0 && (
+                    {categoriesWithNews.length > 0 && (
                         <>
                             <Link to="/" className="hover:underline hover:text-white text-gray-300 text-sm font-bold px-2">
                                 Home
                             </Link>
-                            {navOptions.slice(0, 9).map((cat) => (
-                                <Link
-                                    key={cat.id}
-                                    to={`/categorys/${cat.category.toLowerCase()}`}
-                                    className="hover:underline hover:text-white text-gray-300 text-sm font-medium px-2"
-                                >
-                                    {cat.category.charAt(0).toUpperCase() + cat.category.slice(1)}
-                                </Link>
+                            {categoriesWithNews.slice(0, 9).map((cat) => (
+                                cat.category && (
+                                    <Link
+                                        key={cat.id}
+                                        to={`/categorys/${cat.category.toLowerCase()}`}
+                                        className="hover:underline hover:text-white text-gray-300 text-sm font-medium px-2"
+                                    >
+                                        {cat.category.charAt(0).toUpperCase() + cat.category.slice(1)}
+                                    </Link>
+                                )
                             ))}
                         </>
                     )}
@@ -72,16 +80,16 @@ const Header = () => {
                 </div>
             </div>
 
-            {navOptions && navOptions.length > 0 && (
+            {categoriesWithNews && categoriesWithNews.length > 0 && (
                 <div className="lg:hidden bg-black-100 text-white h-12 sm:h-10 flex items-center justify-center shadow-md scroll-container">
                     <nav className="flex items-center overflow-x-auto whitespace-nowrap">
-                        {navOptions.map((cat) => (
+                        {categoriesWithNews.map((cat) => (
                             <Link
                                 key={cat.id}
-                                to={`/category/${cat.category.toLowerCase()}`}
+                                to={`/categorys/${cat.category.toLowerCase()}`}
                                 className="text-xs font-normal px-2"
                             >
-                                {cat.category.charAt(0).toUpperCase() + cat.category.slice(1)}
+                                {cat.category && cat.category.charAt(0).toUpperCase() + cat.category.slice(1)}
                             </Link>
                         ))}
                     </nav>
