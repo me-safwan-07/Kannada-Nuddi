@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { Bell, ChevronDown, Layout, List } from 'lucide-react';
-// import { DashboardContext } from '../context/DashboardContext';
 import { LuTimer } from "react-icons/lu";
-import DashboardSIdebar from '../components/core/dashboard/DashboardSIdebar';
+import { getAllNews } from '../services/operations/newsApi';
+import { Link } from 'react-router-dom';
 
 function Dashboard() {
-    // const { stats } = useContext(DashboardContext);
     const [blogs, setBlogs] = useState([]);
     const [error, setError] = useState('');
     const [isBoxView, setIsBoxView] = useState(true);  // State to toggle between views
@@ -14,8 +12,8 @@ function Dashboard() {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const res = await axios.get('/api/news/');
-                setBlogs(res.data);
+                const res = await getAllNews()
+                setBlogs(res);
             } catch (err) {
                 console.error('Error fetching content:', err);
                 setError('Failed to fetch blogs. Please try again later.');
@@ -38,45 +36,8 @@ function Dashboard() {
 
     return (
         <div className="flex h-screen bg-gray-100">
-            {/* Sidebar */}
-            <DashboardSIdebar />
-
             {/* Main Content */}
             <div className="flex-1 overflow-auto">
-                {/* Top Bar */}
-                <header className="bg-white shadow-sm p-4">
-                    <div className="max-w-7xl mx-auto flex justify-between items-center">
-                        {/* Search and Balance */}
-                        <div className="flex space-x-4 items-center">
-                            <input
-                                type="text"
-                                placeholder="Search..."
-                                className="bg-gray-200 rounded-full px-4 py-2 outline-none"
-                            />
-                            <div className="bg-blue-100 text-blue-700 px-3 py-2 rounded-full">
-                                Balance: $55144
-                            </div>
-                        </div>
-
-                        {/* User Profile */}
-                        <div className="flex items-center space-x-4">
-                            <Bell className="h-5 w-5 text-gray-700" />
-                            <div className="flex items-center">
-                                <img
-                                    src="https://via.placeholder.com/32"
-                                    alt="Profile"
-                                    className="rounded-full h-8 w-8"
-                                />
-                                <button className="flex items-center ml-2">
-                                    <span className="mr-2">Mr. Jhone</span>
-                                    <ChevronDown className="h-4 w-4" />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-
-                {/* Dashboard Content */}
                 <main className="max-w-7xl mx-auto py-6 px-4">
                     {/* Trending Section */}
                     <div className="flex justify-between items-center mb-6">
@@ -94,6 +55,12 @@ function Dashboard() {
                                 {isBoxView ? 'List View' : 'Box View'}
                             </button>
                         </div>
+                    </div>
+
+                    {/* Link Buttons */}
+                    <div className="flex justify-end space-x-4 mb-6">
+                        <Link to="/news" className="bg-blue-500 text-white py-2 px-4 rounded-lg">News</Link>
+                        <Link to="/editor" className="bg-green-500 text-white py-2 px-4 rounded-lg">Editor</Link>
                     </div>
 
                     {/* Blogs Display */}
@@ -119,7 +86,6 @@ function Dashboard() {
                                         {formatDate(blog.createdAt)}
                                     </div>
                                     <div className="flex justify-between items-center">
-                                        {/* <span className="text-yellow-500">★ 4.5</span> */}
                                         <span className="text-gray-500">{blog.views} views</span>
                                     </div>
                                 </div>
