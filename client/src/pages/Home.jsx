@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'react-circular-progressbar/dist/styles.css';
 
 // Components
-import FakeAd from '../components/common/FakeAd';
+// import FakeAd from '../components/common/FakeAd';
 import { HeroSection } from '../components/core/home/HeroSection';
 import { HorizontialNews } from '../components/core/home/HorizontialNews';
 // import { ThreelayoutNews } from '../components/core/home/ThreelayoutNews';
@@ -51,7 +51,7 @@ const SkeletonLoader = ({ type }) => {
   return null;
 };
 
-const Home = () => {
+const Home = ({news}) => {
   const [allNews, setAllNews] = useState([]);
   const [category, setCategory] = useState([]);
   const [stories, setStories] = useState([]);
@@ -129,17 +129,17 @@ const Home = () => {
 
   return (
     <div className="md:flex-row md:mx-auto md:p-4 space-y-6 md:space-y-0">
-      {allNews.length > 0 ? (
+      {news.length > 0 ? (
         <>
           <div className="flex flex-col md:flex-row gap-2">
             <div className="md:border-r border-slate-500 w-full md:w-4/5 space-y-4">
               {error && <div className="text-red-500">{error}</div>}
 
               {/* Hero Section */}
-              {heroSectionNews.length > 0 ? (
+              {news.length > 0 ? (
                 <div className="md:border-b border-slate-500 mx-1 md:mx-4">
                   <HeroSection
-                    news={heroSectionNews}
+                    news={news.slice(0,7)}
                     truncateContent={truncateContent}
                     formatDate={formatDate}
                   />
@@ -149,10 +149,10 @@ const Home = () => {
               )}
 
               {/* Horizontal News */}
-              {firstHorizontalNews.length > 0 ? (
+              {news.length > 7 ? (
                 <div className="border-b border-slate-500 mx-4">
                   <HorizontialNews
-                    news={firstHorizontalNews}
+                    news={news.slice(7,11)}
                     truncateContent={truncateContent}
                     formatDate={formatDate}
                   />
@@ -162,10 +162,10 @@ const Home = () => {
               )}
 
               {/* Six Small Images */}
-              {sixSmallImagesNews.length > 0 ? (
-                <div className="border-b pb-4 mx-4 border-slate-500">
+              {news.length > 11 ? (
+                <div className="md:pb-4 mx-4 border-slate-500">
                   <SixSmallImages
-                    news={sixSmallImagesNews}
+                    news={news.slice(11,17)}
                     truncateContent={truncateContent}
                     formatDate={formatDate}
                   />
@@ -175,10 +175,10 @@ const Home = () => {
               )}
 
               {/* Second Horizontal News */}
-              {secondHorizontalNews.length > 0 ? (
+              {news.length > 17 > 0 ? (
                 <div className="border-b border-slate-500 mx-4">
                   <HorizontialNews
-                    news={secondHorizontalNews}
+                    news={news.slice(17,21)}
                     truncateContent={truncateContent}
                     formatDate={formatDate}
                   />
@@ -195,13 +195,13 @@ const Home = () => {
           </div>
 
           {/* Stories Section */}
-          <div>
+          {/* <div>
             {storyLoading ? (
               <SkeletonLoader type="stories" />
             ) : (
               <Stories storyData={stories} loading={storyLoading} />
             )}
-          </div>
+          </div> */}
         </>
       ) : (
         <SkeletonLoader />

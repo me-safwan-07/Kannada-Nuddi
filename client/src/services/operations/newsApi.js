@@ -21,7 +21,7 @@ export const getAllNews = async () => {
         if (!response.data) {
             throw new Error("Could not Fetch news");
         }
-        result = response.data
+        result = response.data;
     } catch (error) {
         console.log("GET_ALL_NEWS API error...........: " + error)
         toast.error(error.message);
@@ -37,10 +37,11 @@ export const createNews = async (newsData) => {
 
     try {
         const response = await apiConnector("POST", CREATE_NEWS, newsData);
-        if (!response?.data?.success) {
+        if (!response) {
             throw new Error("Could not create news");
         }
-        result = response?.data?.data; // Assuming the created news is returned
+        result = response.data;
+        console.log(result);
         toast.success("News created successfully!");
     } catch (error) {
         console.log("CREATE_NEWS API error...........: " + error);
@@ -57,10 +58,10 @@ export const getNewsById = async (id) => {
 
     try {
         const response = await apiConnector("GET", `${GET_NEWS_BY_ID}/${id}`);
-        if (!response?.data?.success) {
+        if (!response) {
             throw new Error("Could not fetch news details");
         }
-        result = response?.data?.data; // Assuming the news details are returned
+        result = response?.data?.blog; // Assuming the news details are returned
     } catch (error) {
         console.log("GET_NEWS_BY_ID API error...........: " + error);
         toast.error(error.message);
@@ -95,11 +96,12 @@ export const deleteNews = async (id) => {
     let result = null;
 
     try {
-        const response = await apiConnector("DELETE", DELETE_NEWS.replace(":id", id));
-        if (!response?.data?.success) {
+        const response = await apiConnector("DELETE", `${DELETE_NEWS}/${id}`);
+        if (!response) {
+            console.log(response)
             throw new Error("Could not delete news");
         }
-        result = response?.data?.data; // Assuming a confirmation response is returned
+        result = response?.data; // Assuming a confirmation response is returned
         toast.success("News deleted successfully!");
     } catch (error) {
         console.log("DELETE_NEWS API error...........: " + error);

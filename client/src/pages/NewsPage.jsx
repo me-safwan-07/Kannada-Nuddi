@@ -3,8 +3,14 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getNewsById } from '../services/operations/newsApi';
+import { newsEndpoints } from '../services/apis'
 
-function BlogPage() {
+const {
+    GET_ALL_NEWS,
+} = newsEndpoints;
+
+function NewsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -18,8 +24,8 @@ function BlogPage() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/news/${id}`);
-        setBlog(response.data.blog);
+        const response = await getNewsById(id);
+        setBlog(response);
         setLoading(false);
       } catch (err) {
         toast.error('Failed to fetch blog');
@@ -33,11 +39,10 @@ function BlogPage() {
   // Fetch related or recent news posts
   useEffect(() => {
     if (!blog) return;
-
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/news?category=${blog.category}&exclude=${id}`);
-        setRecentNews(res.data.slice(0, 10));
+        const res = await axios.get(`${GET_ALL_NEWS}?category=${blog.category}&exclude=${id}`);
+        setRecentNews(res?.data?.slice(0, 10));
       } catch (err) {
         console.error('Error fetching related content:', err);
         setError('Failed to fetch news. Please try again later.');
@@ -45,6 +50,7 @@ function BlogPage() {
     };
     fetchBlogs();
   }, [blog, id]);
+
 
   if (loading) {
     return (
@@ -112,24 +118,17 @@ function BlogPage() {
   const toggleReadMore = () => setReadMore(!readMore);
 
   return (
-    <div className="container mx-auto flex flex-col lg:flex-row gap-4 text-white">
+    <div className="container mx-auto flex flex-col lg:flex-row gap-4 text-white font-medium
+    ">
       {/* Left Sidebar */}
-      <aside className="lg:w-1/4 p-4 rounded-md">
-        <h2 className="text-xl font-bold mb-4">Categories</h2>
-        <ul>
-          <li className="mb-2">
-            <Link to="/category/world" className="text-blue-500 hover:underline">World</Link>
-          </li>
-          <li className="mb-2">
-            <Link to="/category/sports" className="text-blue-500 hover:underline">Sports</Link>
-          </li>
-          <li className="mb-2">
-            <Link to="/category/entertainment" className="text-blue-500 hover:underline">Entertainment</Link>
-          </li>
-          <li className="mb-2">
-            <Link to="/category/technology" className="text-blue-500 hover:underline">Technology</Link>
-          </li>
-        </ul>
+      <aside className="md:block hidden  lg:w-1/4 p-4 rounded-md">
+        {/* add the title of recent news */}
+        <h2 className="text-xl font-bold mb-4">Recent News</h2>
+        {recentNews.map((newsItem, index) => (
+          <Link to={`/news/${newsItem._id}`} key={index} className="mb-4"> 
+            {newsItem.title}
+          </Link>
+        ))}
       </aside>
 
       {/* Main Content */}
@@ -154,6 +153,29 @@ function BlogPage() {
               <div dangerouslySetInnerHTML={{ __html: blog.content }} />
             )}
           </div>
+          {/* <div className="my-4">
+            {/* add the title of recent news */}
+            {/* <h2 className="text-xl font-bold mb-4">Recent News</h2>
+            {recentNews.map((newsItem, index) => (
+              <Link to={`/news/${newsItem._id}`} key={index} className="mb-4"> 
+                <div className="border p-3">
+                  {newsItem.title}
+                </div>
+              </Link>
+            ))} */}
+          {/* </div> */}
+        </div>
+        <div className="md:pt-10 border-t">
+          <div className="grid grid-cols-2 gap-4 ">
+            {recentNews.map((newsItem, index) => (
+              <Link to={`/news/${newsItem._id}`} key={index} className="md:block hidden mb-4" onClick={e => e.preventDefault()}>
+                <a href={`/news/${newsItem._id}`} onClick={() => navigate(`/news/${newsItem._id}`)}>
+                  {/* Your existing code here */}
+                </a>
+              </Link>
+
+            ))}
+          </div>
         </div>
       </div>
 
@@ -162,7 +184,7 @@ function BlogPage() {
         <h2 className="text-xl font-bold mb-4">Recent News</h2>
         {recentNews.length > 0 ? (
           recentNews.map((newsItem, index) => (
-            <Link to={`/blog/${newsItem._id}`} key={index} className="block mb-4">
+            <Link to={`/news/${newsItem._id}`} key={index} className="block mb-4">
               <article className="hover:shadow-lg transition-shadow duration-200">
                 {newsItem.image && (
                   <img
@@ -188,4 +210,4 @@ function BlogPage() {
   );
 }
 
-export default BlogPage;
+export default NewsPage;

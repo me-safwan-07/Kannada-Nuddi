@@ -51,10 +51,11 @@ export const getStoryById = async (id) => {
 
     try {
         const response = await apiConnector("GET", `${STORY_API}/${id}`);
-        if (!response?.data?.success) {
+        if (!response) {
             throw new Error("Could not fetch news details");
         }
-        result = response?.data?.data; // Assuming the news details are returned
+        result = response?.data?.slides; // Assuming the news details are returned
+        console.log(result);
     } catch (error) {
         console.log("GET_NEWS_BY_ID API error...........: " + error);
         toast.error(error.message);

@@ -10,7 +10,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                 <div className='md:flex'>
                     {/* Main blog post with larger layout */}
                     <div className="md:pr-2 flex flex-row md:flex-row items-start md:mb-4 overflow-hidden w-full md:w-3/5 md:h-3/5">
-                        <Link to={`/blog/${news[0]._id}`} className="w-full relative">
+                        <Link to={`/news/${news[0]._id}`} className="w-full relative">
                             <img 
                                 src={news[0].image} 
                                 alt={news[0].title} 
@@ -38,7 +38,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                         <div className="md:border-x border-slate-500 py-1 md:mb-4">
                             {news.slice(1,4).map((news, index) => (
                                 <Link 
-                                    to={`blog/${news._id}`} 
+                                    to={`/news/${news._id}`} 
                                     key={news._id}
                                     className=''
                                 >
@@ -54,7 +54,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                     )}
 
                                      {/* Mobile: Show image for all indexes on the right */}
-                                    <div className={`${index !== 2 ? "border-b md:border-b-0" : ""} border-slate-500 py-2  flex flex-row-reverse justify-between items-center md:flex-col pl-2 w-full gap-2`}>
+                                    <div className={`${index !== 2 ? "border-b md:border-b" : ""} border-slate-500 py-2  flex flex-row-reverse justify-between items-center md:flex-col pl-2 w-full gap-2`}>
                                         <img
                                             src={news.image}
                                             alt={news.title}
@@ -76,10 +76,10 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                             ))}
                             <div className="border-b md:border-b-0 border-slate-500 py-1 md:mb-4"></div>
                         </div>
-                        <div className="pr-2 mb-4">
+                        <div className="mb-4">
                             {news.slice(4,8).map((news, index) => (
                                 <Link 
-                                    to={`blog/${news._id}`} 
+                                    to={`/news/${news._id}`} 
                                     key={news._id}
                                     className=''
                                 >
@@ -96,7 +96,7 @@ export const HeroSection = ({ news, truncateContent, formatDate, titleSize }) =>
                                     )}
 
                                      {/* Mobile: Show image for all indexes on the right */}
-                                    <div className={`${index !== 2 ? "border-b md:border-b-0" : ""} border-slate-500 py-2  flex flex-row-reverse justify-between items-center md:flex-col pl-2 w-full gap-2`}>
+                                    <div className={`${index !== 2 ? "border-b md:border-b" : ""} border-slate-500 py-2  flex flex-row-reverse justify-between items-center md:flex-col pl-2 w-full gap-2`}>
                                         <img
                                             src={news.image}
                                             alt={news.title}
