@@ -17,10 +17,10 @@ export const getAllCategories = async () => {
 
     try {
         const response = await apiConnector("GET", GET_CATEGORIES_API);
-        if (!response?.data?.success) {
+        if (!response) {
             throw new Error("Could not fetch categories");
         }
-        result = response?.data?.data;
+        result = response.data;
     } catch (error) {
         console.log("GET_ALL_CATEGORIES API error...........: " + error);
         toast.error(error.message);
@@ -36,10 +36,10 @@ export const createCategory = async (categoryData) => {
 
     try {
         const response = await apiConnector("POST", CREATE_CATEGORY_API, categoryData);
-        if (!response?.data?.success) {
+        if (!response) {
             throw new Error("Could not create category");
         }
-        result = response?.data?.data; // Assuming the created category is returned
+        result = response?.data; // Assuming the created category is returned
         toast.success("Category created successfully!");
     } catch (error) {
         console.log("CREATE_CATEGORY API error...........: " + error);
@@ -50,12 +50,12 @@ export const createCategory = async (categoryData) => {
 }
 
 //=========================== Get Category by ID =======================
-export const getCategoryById = async (id) => {
+export const getCategoryById = async (category) => {
     const toastId = toast.loading("Loading category details...");
     let result = null;
 
     try {
-        const response = await apiConnector("GET", GET_SINGLE_CATEGORY_API.replace(":id", id));
+        const response = await apiConnector("GET", GET_SINGLE_CATEGORY_API, category);
         if (!response?.data?.success) {
             throw new Error("Could not fetch category details");
         }
@@ -69,16 +69,21 @@ export const getCategoryById = async (id) => {
 }
 
 //=========================== Update Category =======================
-export const updateCategory = async (id, categoryData) => {
+export const updateCategory = async (categoryData) => {
     const toastId = toast.loading("Updating category...");
     let result = null;
 
     try {
-        const response = await apiConnector("PUT", UPDATE_CATEGORY_API.replace(":id", id), categoryData);
-        if (!response?.data?.success) {
+        const response = await apiConnector("PUT", UPDATE_CATEGORY_API, {
+            categories: categoryData  // Wrap the array inside an object
+        });
+        
+        console.log(response);
+        console.log("updated...")
+        if (!response) {
             throw new Error("Could not update category");
         }
-        result = response?.data?.data; // Assuming the updated category is returned
+        result = response; // Assuming the updated category is returned
         toast.success("Category updated successfully!");
     } catch (error) {
         console.log("UPDATE_CATEGORY API error...........: " + error);
@@ -95,10 +100,10 @@ export const deleteCategory = async (id) => {
 
     try {
         const response = await apiConnector("DELETE", DELETE_CATEGORY_API.replace(":id", id));
-        if (!response?.data?.success) {
+        if (!response) {
             throw new Error("Could not delete category");
         }
-        result = response?.data?.data; // Assuming a confirmation response is returned
+        result = response?.data; // Assuming a confirmation response is returned
         toast.success("Category deleted successfully!");
     } catch (error) {
         console.log("DELETE_CATEGORY API error...........: " + error);
