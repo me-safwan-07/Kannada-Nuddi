@@ -42,16 +42,17 @@ const RouteHandler = ({ isLoggedIn }) => {
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<CreateBlog />} />
           <Route path='/blog/:id' element={<BlogPage />} />
+          <Route path='/categorys/:category' element={<BlogPage />} />
           <Route path='/login' element={<Login />} />
           
-          {isLoggedIn && (
+          {/* {isLoggedIn && ( */}
             <>
               <Route path='/dashboard' element={<Dashboard />} />
-              <Route path='/dashboard/categorys' element={<DashboardCategory />} />
+              <Route path='/dashboard/category' element={<DashboardCategory />} />
               <Route path='/:category' element={<CategoryPage />} />
             </>
             
-          )}
+          {/* )} */}
           <Route path="/creatstory" element={<CreateStory />} />
           <Route path='/story/:storyId' element={<WebStoryById />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
