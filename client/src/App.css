@@ -32,3 +32,70 @@
       scrollbar-color: #ccc #f1f1f1; /* Thumb and track colors */
   }
 }
+
+/* story animation style */
+/* WebStoryById.css */
+
+/* Animation for sliding in from the bottom */
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to caption */
+.slide-caption {
+  opacity: 0;
+  animation: slideInFromBottom 1s forwards;
+}
+
+.slide-image {
+  opacity: 0;
+  animation: slideInFromBottom 1.5s forwards;
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #007bff;
+  border-radius: 5px;
+  transition: width 0.3s;
+}
+
+/* Back to Stories Button */
+.back-to-stories {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  background-color: #333;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  opacity: 0;
+  animation: slideInFromBottom 1s 1s forwards;
+}
+
+.web-story-container {
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+}
+
