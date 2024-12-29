@@ -9,6 +9,7 @@ import {
 } from "react-google-stories";
 import { useParams } from "react-router-dom";
 import { StorySkeleton } from "../components/common/skeleton/StorySkeleton";
+import { getStoryById } from "../services/operations/storyApi";
 
 export const WebStoryById = () => {
   const { storyId } = useParams();
@@ -17,9 +18,8 @@ export const WebStoryById = () => {
   useEffect(() => {
     const fetchSlides = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/story/${storyId}`);
-        const data = await response.json();
-        setSlides(data.slides || []); // Default to empty array if `data.slides` is undefined
+        const response = await getStoryById(storyId);
+        setSlides(response || []); // Default to empty array if `data.slides` is undefined
       } catch (error) {
         console.error("Error fetching slides:", error);
       }
