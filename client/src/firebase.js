@@ -8,11 +8,11 @@ import process from 'process';
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.VITE_APP_APIKEY,
-  authDomain: "newsblogs-d0bc6.firebaseapp.com",
-  projectId: "newsblogs-d0bc6",
-  storageBucket: "newsblogs-d0bc6.appspot.com",
-  messagingSenderId: "379004232370",
-  appId: "1:379004232370:web:541fc9f7206af958e19fab"
+  authDomain: process.env.VITE_app_AUTH_DOMAIN,
+  projectId: process.env.VITE_APP_PROJECTID,
+  storageBucket: process.env.VITE_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.VITE_APP_MESSAGING_SENDER_ID,
+  appId: process.env.VITE_APP_ID
 };
 
 // Initialize Firebase
