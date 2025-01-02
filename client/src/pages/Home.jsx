@@ -13,6 +13,7 @@ import { getAllNews } from '../services/operations/newsApi';
 import { Stories } from '../components/core/Stories';
 import { getAllStory } from '../services/operations/storyApi';
 import { SixSmallImages } from '../components/core/home/SixSmallImage';
+import Sidebar from '../components/core/home/Sidebar';
 
 // Skeleton Loader Component
 const SkeletonLoader = ({ type }) => {
@@ -191,6 +192,7 @@ const Home = ({news}) => {
             {/* Sidebar for Ads */}
             <aside className="pl-3 w-full md:w-1/5 flex flex-col space-y-4">
               {/* <FakeAd className="w-full h-64 bg-black-100" /> */}
+              <Sidebar />
             </aside>
           </div>
 
